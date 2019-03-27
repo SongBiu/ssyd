@@ -3,16 +3,13 @@ package top.mapku.utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import top.mapku.core.aop.exception.AuthException;
-import top.mapku.core.aop.exception.LoginException;
-import top.mapku.core.dto.UserDto;
+import top.mapku.core.entity.User;
 import top.mapku.core.service.UserService;
-import top.mapku.core.service.impl.UserServiceImpl;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.security.MessageDigest;
 
 /**
  * create by lisong
@@ -38,7 +35,7 @@ public class Auth {
             throw new AuthException();
         }
         HttpSession session = request.getSession();
-        for (Cookie cookie: cookies) {
+        for (Cookie cookie : cookies) {
             if (cookie.getPath().equals("/wxapp") &&
                     Constant.COOKIE_SESSION_ID.equals(cookie.getName())) {
                 if (session.getAttribute(Constant.COOKIE_SESSION_ID).equals(cookie.getValue())) {
@@ -52,8 +49,8 @@ public class Auth {
     }
 
     public static boolean login(String id, HttpSession session) {
-        UserDto userDto = auth.userService.getUserById(id);
-        if (null == userDto) {
+        User user = auth.userService.getUserById(id);
+        if (null == user) {
             return false;
         }
         session.setAttribute(Constant.COOKIE_SESSION_ID, id);

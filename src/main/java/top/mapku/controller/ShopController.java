@@ -20,6 +20,6 @@ public class ShopController {
     @PutMapping("/verify-code")
     @Message(success = "验证码通过", fail = "验证码错误")
     public boolean verify(@RequestParam String userId, @RequestParam String code) {
-            return shopService.verify(userId, code);
+        return shopService.verify(userId, code);
     }
 }

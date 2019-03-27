@@ -1,11 +1,9 @@
 package top.mapku.core.service.impl;
 
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Component;
-import top.mapku.core.dto.OpenIdDto;
 import top.mapku.core.mapper.UserMapper;
-import top.mapku.core.dto.UserDto;
+import top.mapku.core.entity.User;
 import top.mapku.core.service.UserService;
 import top.mapku.utils.Auth;
 import top.mapku.utils.WxUtils;
@@ -26,23 +24,23 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Cacheable(value = "user", key = "#id")
-    public UserDto getUserById(String id) {
+    public User getUserById(String id) {
         return userMapper.selectUserById(id);
     }
 
     @Override
     @Cacheable(value = "userFromTeam", key = "#teamId")
-    public List<UserDto> getUsersByTeamId(Integer teamId) {
+    public List<User> getUsersByTeamId(Integer teamId) {
         return null;
     }
 
     @Override
-    public UserDto login(String jsonCode, String name, String avatarUrl, HttpSession session) {
+    public User login(String jsonCode, String name, String avatarUrl, HttpSession session) {
         String id = WxUtils.getOpenid(jsonCode);
         if (!Auth.login(id, session)) {
-            userMapper.addUser(new UserDto(id, name, avatarUrl));
+            userMapper.addUser(new User(id, name, avatarUrl));
         } else {
-            userMapper.updateUser(new UserDto(id, name, avatarUrl));
+            userMapper.updateUser(new User(id, name, avatarUrl));
         }
         return userMapper.selectUserById(id);
     }

@@ -2,7 +2,7 @@ package top.mapku.core.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import top.mapku.core.dto.MomentDto;
+import top.mapku.core.entity.Moment;
 
 import java.util.List;
 
@@ -13,5 +13,5 @@ import java.util.List;
 @Mapper
 public interface MomentMapper {
     @Select("SELECT * FROM moment")
-    List<MomentDto> getAllMoments();
+    List<Moment> getAllMoments();
 }

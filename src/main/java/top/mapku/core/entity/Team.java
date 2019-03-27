@@ -1,9 +1,9 @@
-package top.mapku.core.dto;
+package top.mapku.core.entity;
 
 /**
  * create by lisong
  * email: songlcis@gmail.com
  */
 
-public class TeamDto {
+public class Team {
 }

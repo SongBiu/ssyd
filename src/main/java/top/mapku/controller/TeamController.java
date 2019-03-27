@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.mapku.core.aop.annotation.Message;
-import top.mapku.core.aop.annotation.NotAuth;
-import top.mapku.core.dto.TeamDto;
+import top.mapku.core.entity.Team;
 import top.mapku.core.service.TeamService;
 
 /**
@@ -23,7 +22,7 @@ public class TeamController {
 
     @GetMapping("/")
     @Message(fail = "获取用户社团信息失败", success = "成功获取社团信息")
-    public TeamDto getTeamByUserId(@CookieValue("id") String userId) {
+    public Team getTeamByUserId(@CookieValue("id") String userId) {
         return teamService.getTeamByUserId(userId);
     }
 }

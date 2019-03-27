@@ -1,7 +1,7 @@
 package top.mapku.core.service.impl;
 
 import org.springframework.stereotype.Component;
-import top.mapku.core.dto.MomentDto;
+import top.mapku.core.entity.Moment;
 import top.mapku.core.mapper.MomentMapper;
 import top.mapku.core.service.MomentService;
 
@@ -18,12 +18,12 @@ public class MomentServiceImpl implements MomentService {
     private MomentMapper momentMapper;
 
     @Override
-    public List<MomentDto> getAllMoments() {
+    public List<Moment> getAllMoments() {
         return momentMapper.getAllMoments();
     }
 
     @Override
-    public void addMoment(MomentDto momentDto) {
+    public void addMoment(Moment moment) {
 
     }
 }

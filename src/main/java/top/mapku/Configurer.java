@@ -10,7 +10,7 @@ import top.mapku.core.aop.interceptor.LoginInterceptor;
  * create by lisong
  * email: songlcis@gmail.com
  */
-//@Configuration
+@Configuration
 public class Configurer implements WebMvcConfigurer {
     @Bean
     public LoginInterceptor loginInterceptor() {

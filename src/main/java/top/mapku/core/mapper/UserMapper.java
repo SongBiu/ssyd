@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
-import top.mapku.core.dto.UserDto;
+import top.mapku.core.entity.User;
 
 import java.util.List;
 
@@ -15,14 +15,14 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     @Select("SELECT * FROM user WHERE userId = #{id}")
-    UserDto selectUserById(String id);
+    User selectUserById(String id);
 
     @Select("SELECT * FROM user WHERE teamId = #{teamId}")
-    List<UserDto> selectUsersByTeamId(Integer teamId);
+    List<User> selectUsersByTeamId(Integer teamId);
 
     @Insert("INSERT user(userId, userName, registrationDate) VALUES (#{userId}, #{userName}, NOW())")
-    void addUser(UserDto userDto);
+    void addUser(User user);
 
     @Update("UPDATE user SET userName = #{userName}, avatarUrl = #{avatarUrl} WHERE userId = #{userId}")
-    void updateUser(UserDto userDto);
+    void updateUser(User user);
 }

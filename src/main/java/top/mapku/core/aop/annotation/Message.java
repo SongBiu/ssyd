@@ -12,5 +12,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface Message {
     String fail();
+
     String success() default "";
 }

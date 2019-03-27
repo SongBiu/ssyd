@@ -1,7 +1,6 @@
 package top.mapku.core.service;
 
-import org.springframework.stereotype.Component;
-import top.mapku.core.dto.MomentDto;
+import top.mapku.core.entity.Moment;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
  */
 
 public interface MomentService {
-    List<MomentDto> getAllMoments();
+    List<Moment> getAllMoments();
 
-    void addMoment(MomentDto momentDto);
+    void addMoment(Moment moment);
 }

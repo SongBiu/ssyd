@@ -5,5 +5,5 @@ package top.mapku.core.aop.exception;
  * email: songlcis@gmail.com
  */
 
-public class AuthException extends RuntimeException{
+public class AuthException extends RuntimeException {
 }

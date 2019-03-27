@@ -1,11 +1,11 @@
-package top.mapku.core.dto;
+package top.mapku.core.entity;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import top.mapku.utils.Constant;
 
 @Component
-public class OpenIdDto {
+public class HttpUrl {
     @Value("${ssyd.appid}")
     private String appid;
 

@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-import top.mapku.core.dto.OpenIdDto;
+import top.mapku.core.entity.HttpUrl;
 
 import javax.annotation.PostConstruct;
 
@@ -16,20 +16,20 @@ import javax.annotation.PostConstruct;
 @Component
 public class WxUtils {
     @Autowired
-    private OpenIdDto openIdDto;
+    private HttpUrl httpUrl;
     private static WxUtils wxUtils;
 
     @PostConstruct
     void init() {
         wxUtils = this;
-        wxUtils.openIdDto = this.openIdDto;
+        wxUtils.httpUrl = this.httpUrl;
     }
 
     public static String getOpenid(String jsonCode) {
-        wxUtils.openIdDto.setJscode(jsonCode);
+        wxUtils.httpUrl.setJscode(jsonCode);
         RestTemplate restTemplate = new RestTemplate();
-        String jsonString = restTemplate.getForObject(wxUtils.openIdDto.toString(), String.class);
+        String jsonString = restTemplate.getForObject(wxUtils.httpUrl.toString(), String.class);
         JSONObject jsonObject = new JSONObject(jsonString);
-        return (String)jsonObject.get("openid");
+        return (String) jsonObject.get("openid");
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.mapku.core.aop.annotation.Message;
 import top.mapku.core.aop.annotation.NotAuth;
-import top.mapku.core.dto.MomentDto;
+import top.mapku.core.entity.Moment;
 import top.mapku.core.service.MomentService;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class MomentController {
     @GetMapping("")
     @Message(fail = "获取动态失败", success = "获取动态成功")
     @NotAuth
-    public List<MomentDto> getAllMoments() {
+    public List<Moment> getAllMoments() {
         return momentService.getAllMoments();
     }
 }

@@ -1,6 +1,6 @@
 package top.mapku.core.service;
 
-import top.mapku.core.dto.TeamDto;
+import top.mapku.core.entity.Team;
 
 /**
  * create by lisong
@@ -8,7 +8,7 @@ import top.mapku.core.dto.TeamDto;
  */
 
 public interface TeamService {
-    TeamDto getTeamByUserId(String userId);
+    Team getTeamByUserId(String userId);
 
-    TeamDto changeTeam(String userId, String teamId);
+    Team changeTeam(String userId, String teamId);
 }

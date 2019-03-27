@@ -1,4 +1,4 @@
-package top.mapku.core.dto;
+package top.mapku.core.entity;
 
 
 import java.sql.Date;
@@ -8,10 +8,11 @@ import java.sql.Date;
  * email: songlcis@gmail.com
  */
 
-public class UserDto {
+public class User {
     private String userId;
     private String userName;
     private Integer teamId;
+    private String teamName;
     private Date registrationDate;
     private Integer score;
     private Integer bag;
@@ -20,31 +21,10 @@ public class UserDto {
     private String avatarUrl;
     private Boolean pku;
 
-    public UserDto(String userId, String userName, String avatarUrl) {
+    public User(String userId, String userName, String avatarUrl) {
         this.userId = userId;
         this.userName = userName;
         this.avatarUrl = avatarUrl;
-    }
-
-    public UserDto(String userId, String userName, Integer teamId, Date registrationDate, Integer score, Integer bag, Integer postcard, Integer voucher, String avatarUrl, Boolean pku) {
-        this.userId = userId;
-        this.userName = userName;
-        this.teamId = teamId;
-        this.registrationDate = registrationDate;
-        this.score = score;
-        this.bag = bag;
-        this.postcard = postcard;
-        this.voucher = voucher;
-        this.avatarUrl = avatarUrl;
-        this.pku = pku;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
     }
 
     public String getUserId() {
@@ -55,12 +35,28 @@ public class UserDto {
         this.userId = userId;
     }
 
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public Integer getTeamId() {
         return teamId;
     }
 
     public void setTeamId(Integer teamId) {
         this.teamId = teamId;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 
     public Date getRegistrationDate() {

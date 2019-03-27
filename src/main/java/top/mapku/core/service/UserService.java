@@ -1,8 +1,6 @@
 package top.mapku.core.service;
 
-import org.springframework.cache.annotation.Cacheable;
-import top.mapku.core.dto.OpenIdDto;
-import top.mapku.core.dto.UserDto;
+import top.mapku.core.entity.User;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -14,10 +12,10 @@ import java.util.List;
 
 public interface UserService {
 
-    UserDto getUserById(String id);
+    User getUserById(String id);
 
-    List<UserDto> getUsersByTeamId(Integer teamId);
+    List<User> getUsersByTeamId(Integer teamId);
 
 
-    UserDto login(String jsonCode, String name, String avatarUrl, HttpSession session);
+    User login(String jsonCode, String name, String avatarUrl, HttpSession session);
 }
