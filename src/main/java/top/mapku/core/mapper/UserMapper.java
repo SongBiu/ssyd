@@ -20,9 +20,13 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE teamId = #{teamId}")
     List<User> selectUsersByTeamId(Integer teamId);
 
+    @Select("SELECT * FROM user WHERE userId = (SELECT alpha FROM invite WHERE userId = #{userId}")
+    User selectInviter(User user);
+
     @Insert("INSERT user(userId, userName, registrationDate) VALUES (#{userId}, #{userName}, NOW())")
-    void addUser(User user);
+    void insertUser(User user);
 
     @Update("UPDATE user SET userName = #{userName}, avatarUrl = #{avatarUrl} WHERE userId = #{userId}")
     void updateUser(User user);
+
 }

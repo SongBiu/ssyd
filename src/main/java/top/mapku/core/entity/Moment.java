@@ -1,7 +1,9 @@
 package top.mapku.core.entity;
 
 
-import java.sql.Date;
+import org.springframework.beans.factory.annotation.Value;
+
+import java.util.Date;
 
 /**
  * create by lisong
@@ -9,6 +11,10 @@ import java.sql.Date;
  */
 
 public class Moment {
+
+    @Value("${ssyd.domain}")
+    private String domain;
+
     private Integer momentId;
     private Date momentDate;
     private String userId;
@@ -17,7 +23,7 @@ public class Moment {
     private String imageUrl;
     private String position;
     private Boolean ssyd;
-    private String good;
+    private Integer good;
 
     public Moment(String userId, Integer bag, String content, String imageUrl, String position, Boolean ssyd) {
         this.userId = userId;
@@ -41,6 +47,14 @@ public class Moment {
 
     static Moment xqjlMoment(String userId, String content, String position) {
         return new Moment(userId, content, position, false);
+    }
+
+    public String getDomain() {
+        return domain;
+    }
+
+    public void setDomain(String domain) {
+        this.domain = domain;
     }
 
     public Integer getMomentId() {
@@ -107,11 +121,11 @@ public class Moment {
         this.ssyd = ssyd;
     }
 
-    public String getGood() {
+    public Integer getGood() {
         return good;
     }
 
-    public void setGood(String good) {
+    public void setGood(Integer good) {
         this.good = good;
     }
 }

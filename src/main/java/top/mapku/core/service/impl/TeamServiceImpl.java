@@ -21,12 +21,13 @@ public class TeamServiceImpl implements TeamService {
     @Override
     @Cacheable(value = "teamOfUser", key = "#userId")
     public Team getTeamByUserId(String userId) {
-        return teamMapper.getTeamByUserId(userId);
+        return teamMapper.selectTeamByUserId(userId);
     }
 
     @Override
     @CachePut(value = "teamOfUser", key = "#userId")
     public Team changeTeam(String userId, String teamId) {
-        return teamMapper.getTeamById(teamId);
+        return teamMapper.selectTeamById(teamId);
     }
+
 }

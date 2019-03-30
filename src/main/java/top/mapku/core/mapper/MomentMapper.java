@@ -1,7 +1,6 @@
 package top.mapku.core.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import top.mapku.core.entity.Moment;
 
 import java.util.List;
@@ -13,5 +12,20 @@ import java.util.List;
 @Mapper
 public interface MomentMapper {
     @Select("SELECT * FROM moment")
-    List<Moment> getAllMoments();
+    List<Moment> selectAllMoments();
+
+    @Select("SELECT * FROM moment WHERE momentId = #{momentId}")
+    Moment selectMomentById(Integer momentId);
+
+    @Select("SELECT * FROM moment WHERE userId = #{userId}")
+    List<Moment> selectMomentsByUserId(String userId);
+
+    @Insert("INSERT moment(momentDate, bag, content, imageUrl, position, ssyd, userId) VALUES (NOW(), #{bag}, #{content}, #{imageUrl}, #{position}, #{ssyd}, #{userId})")
+    void insertMoment(Moment moment);
+
+    @Delete("DELETE FROM moment WHERE momentId = #{momentId}")
+    void delteMoment(Integer momentId);
+
+    @Update("UPDATE moment SET good = #{good} WHERE momentId = #{momentId}")
+    void updateGood(Moment moment);
 }

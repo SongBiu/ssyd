@@ -12,8 +12,8 @@ import top.mapku.core.entity.Team;
 @Mapper
 public interface TeamMapper {
     @Select("SELECT * FROM team WHERE teamId = #{id}")
-    Team getTeamById(String id);
+    Team selectTeamById(String id);
 
     @Select("SELECT * FROM team WHERE teamId = (SELECT teamId FROM user WHERE userId = #{userId})")
-    Team getTeamByUserId(String userId);
+    Team selectTeamByUserId(String userId);
 }

@@ -35,7 +35,7 @@ CREATE TABLE moment
   content    VARCHAR(200)          DEFAULT NULL,
   imageUrl   VARCHAR(300) NULL,
   position   VARCHAR(100)          DEFAULT NULL,
-  ssyd     BOOLEAN      NOT NULL DEFAULT 0,
+  ssyd       BOOLEAN      NOT NULL DEFAULT 0,
   userId     VARCHAR(45)  NOT NULL REFERENCES user (userId) ON DELETE CASCADE,
   good       INT                   DEFAULT 0
 )
@@ -50,9 +50,8 @@ CREATE TABLE good
 CREATE TABLE invite
 (
   alpha VARCHAR(45) NOT NULL REFERENCES user (userId) ON DELETE CASCADE,
-  beta  VARCHAR(45) NOT NULL REFERENCES user (userId) ON DELETE CASCADE,
-  code  VARCHAR(45) NOT NULL,
-  PRIMARY KEY (alpha, beta)
+  beta  VARCHAR(45) REFERENCES user (userId) ON DELETE CASCADE DEFAULT NULL,
+  code  VARCHAR(45) NOT NULL PRIMARY KEY
 )
   DEFAULT CHARSET = utf8mb4;
 CREATE TABLE verify

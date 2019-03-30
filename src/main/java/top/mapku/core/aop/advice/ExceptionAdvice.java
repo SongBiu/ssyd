@@ -1,7 +1,5 @@
 package top.mapku.core.aop.advice;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import top.mapku.core.aop.annotation.Message;
@@ -35,6 +33,18 @@ public class ExceptionAdvice {
     @ExceptionHandler(EmptyException.class)
     @Message(fail = "获取信息失败")
     public EmptyException emptyException(EmptyException e) {
+        return e;
+    }
+
+    @ExceptionHandler(DuplicateException.class)
+    @Message(fail = "数据重复")
+    public DuplicateException duplicateException(DuplicateException e) {
+        return e;
+    }
+
+    @ExceptionHandler(LackException.class)
+    @Message(fail = "所需要消耗的资源不足")
+    public LackException lackException(LackException e) {
         return e;
     }
 }

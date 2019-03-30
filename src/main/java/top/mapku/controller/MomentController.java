@@ -1,11 +1,10 @@
 package top.mapku.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import top.mapku.core.aop.annotation.Message;
 import top.mapku.core.aop.annotation.NotAuth;
+import top.mapku.core.entity.Good;
 import top.mapku.core.entity.Moment;
 import top.mapku.core.service.MomentService;
 
@@ -28,4 +27,23 @@ public class MomentController {
     public List<Moment> getAllMoments() {
         return momentService.getAllMoments();
     }
+
+    @DeleteMapping("/{momentId}")
+    @Message(fail = "删除动态失败", success = "删除动态成功")
+    public void deleteMoment(@PathVariable Integer momentId) {
+        momentService.deleteMoment(momentId);
+    }
+
+    @PostMapping("/{momentId}")
+    @Message(fail = "点赞失败", success = "点赞成功")
+    public void giveGood(@PathVariable Integer momentId, @CookieValue("id") String userId) {
+        momentService.giveGood(new Good(userId, momentId));
+    }
+
+    @DeleteMapping("/{momentId}")
+    @Message(fail = "取消点赞失败", success = "取消点赞成功")
+    public void deleteGood(@PathVariable Integer momentId, @CookieValue("id") String userId) {
+        momentService.deleteGood(new Good(userId, momentId));
+    }
+
 }

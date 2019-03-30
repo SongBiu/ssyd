@@ -16,6 +16,5 @@ public interface UserService {
 
     List<User> getUsersByTeamId(Integer teamId);
 
-
     User login(String jsonCode, String name, String avatarUrl, HttpSession session);
 }

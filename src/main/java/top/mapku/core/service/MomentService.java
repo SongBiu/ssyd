@@ -1,5 +1,6 @@
 package top.mapku.core.service;
 
+import top.mapku.core.entity.Good;
 import top.mapku.core.entity.Moment;
 
 import java.util.List;
@@ -12,5 +13,11 @@ import java.util.List;
 public interface MomentService {
     List<Moment> getAllMoments();
 
+    void deleteMoment(Integer momentId);
+
     void addMoment(Moment moment);
+
+    void giveGood(Good good);
+
+    void deleteGood(Good good);
 }

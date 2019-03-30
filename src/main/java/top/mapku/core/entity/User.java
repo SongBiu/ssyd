@@ -1,7 +1,7 @@
 package top.mapku.core.entity;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * create by lisong

@@ -31,14 +31,14 @@ public class UserServiceImpl implements UserService {
     @Override
     @Cacheable(value = "userFromTeam", key = "#teamId")
     public List<User> getUsersByTeamId(Integer teamId) {
-        return null;
+        return userMapper.selectUsersByTeamId(teamId);
     }
 
     @Override
     public User login(String jsonCode, String name, String avatarUrl, HttpSession session) {
         String id = WxUtils.getOpenid(jsonCode);
         if (!Auth.login(id, session)) {
-            userMapper.addUser(new User(id, name, avatarUrl));
+            userMapper.insertUser(new User(id, name, avatarUrl));
         } else {
             userMapper.updateUser(new User(id, name, avatarUrl));
         }
