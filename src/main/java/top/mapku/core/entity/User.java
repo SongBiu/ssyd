@@ -1,7 +1,7 @@
 package top.mapku.core.entity;
 
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * create by lisong
@@ -12,7 +12,6 @@ public class User {
     private String userId;
     private String userName;
     private Integer teamId;
-    private String teamName;
     private Date registrationDate;
     private Integer score;
     private Integer bag;
@@ -25,6 +24,19 @@ public class User {
         this.userId = userId;
         this.userName = userName;
         this.avatarUrl = avatarUrl;
+    }
+
+    public User(String userId, String userName, Integer teamId, Date registrationDate, Integer score, Integer bag, Integer postcard, Integer voucher, String avatarUrl, Boolean pku) {
+        this.userId = userId;
+        this.userName = userName;
+        this.teamId = teamId;
+        this.registrationDate = registrationDate;
+        this.score = score;
+        this.bag = bag;
+        this.postcard = postcard;
+        this.voucher = voucher;
+        this.avatarUrl = avatarUrl;
+        this.pku = pku;
     }
 
     public String getUserId() {
@@ -49,14 +61,6 @@ public class User {
 
     public void setTeamId(Integer teamId) {
         this.teamId = teamId;
-    }
-
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public void setTeamName(String teamName) {
-        this.teamName = teamName;
     }
 
     public Date getRegistrationDate() {

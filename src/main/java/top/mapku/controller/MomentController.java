@@ -40,10 +40,10 @@ public class MomentController {
         momentService.giveGood(new Good(userId, momentId));
     }
 
-    @DeleteMapping("/{momentId}")
-    @Message(fail = "取消点赞失败", success = "取消点赞成功")
-    public void deleteGood(@PathVariable Integer momentId, @CookieValue("id") String userId) {
-        momentService.deleteGood(new Good(userId, momentId));
-    }
+//    @DeleteMapping("/{momentId}")
+//    @Message(fail = "取消点赞失败", success = "取消点赞成功")
+//    public void deleteGood(@PathVariable Integer momentId, @CookieValue("id") String userId) {
+//        momentService.deleteGood(new Good(userId, momentId));
+//    }
 
 }

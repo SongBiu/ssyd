@@ -27,7 +27,6 @@ public class UserController {
         return userService.login(jsonCode, name, avatarUrl, session);
     }
 
-
     @GetMapping("")
     @Message(success = "获取用户信息成功", fail = "获取用户信息失败")
     public User getUserById(@CookieValue("id") String id) {

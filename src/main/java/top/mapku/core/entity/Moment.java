@@ -3,7 +3,7 @@ package top.mapku.core.entity;
 
 import org.springframework.beans.factory.annotation.Value;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * create by lisong

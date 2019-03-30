@@ -20,17 +20,14 @@ import java.util.LinkedHashMap;
  * create by lisong
  * email: songlcis@gmail.com
  */
-//@RestControllerAdvice
+@RestControllerAdvice
 public class ResponseAdvice implements ResponseBodyAdvice {
 
     @Override
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass,
                                   ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         Message annotationMessage = methodParameter.getMethod().getAnnotation(Message.class);
-        if (null == o ||
-                (o.getClass() == Boolean.class && !(Boolean) o) ||
-                o.getClass() == LinkedHashMap.class ||
-                o.getClass().isAssignableFrom(RuntimeException.class)) {
+        if (null != o && o.getClass().isAssignableFrom(RuntimeException.class)) {
             return Response.fail(annotationMessage.fail());
         }
         return Response.success(o, annotationMessage.success());
