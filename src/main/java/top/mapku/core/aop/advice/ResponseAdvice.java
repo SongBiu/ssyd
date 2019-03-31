@@ -27,6 +27,9 @@ public class ResponseAdvice implements ResponseBodyAdvice {
     public Object beforeBodyWrite(Object o, MethodParameter methodParameter, MediaType mediaType, Class aClass,
                                   ServerHttpRequest serverHttpRequest, ServerHttpResponse serverHttpResponse) {
         Message annotationMessage = methodParameter.getMethod().getAnnotation(Message.class);
+        if (null == annotationMessage) {
+            return o;
+        }
         if (null != o && o.getClass().isAssignableFrom(RuntimeException.class)) {
             return Response.fail(annotationMessage.fail());
         }
