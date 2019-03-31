@@ -36,16 +36,19 @@ public class Auth {
         }
         HttpSession session = request.getSession();
         for (Cookie cookie : cookies) {
-            if (cookie.getPath().equals("/wxapp") &&
-                    Constant.COOKIE_SESSION_ID.equals(cookie.getName())) {
-                if (session.getAttribute(Constant.COOKIE_SESSION_ID).equals(cookie.getValue())) {
+            if (Constant.COOKIE_SESSION_ID.equals(cookie.getName())) {
+                if (null != session.getAttribute(Constant.COOKIE_SESSION_ID) &&
+                        session.getAttribute(Constant.COOKIE_SESSION_ID).equals(cookie.getValue())) {
                     return true;
                 } else {
-                    throw new AuthException();
+                    if (!login(cookie.getValue(), session)) {
+                        throw new AuthException();
+                    }
+                    return true;
                 }
             }
         }
-        return true;
+        return false;
     }
 
     public static boolean login(String id, HttpSession session) {

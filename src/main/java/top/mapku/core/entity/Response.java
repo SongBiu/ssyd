@@ -1,4 +1,4 @@
-package top.mapku.core.aop;
+package top.mapku.core.entity;
 
 import org.springframework.stereotype.Component;
 
