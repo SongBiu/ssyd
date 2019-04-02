@@ -1,6 +1,7 @@
 package top.mapku.utils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.stereotype.Component;
 import top.mapku.core.aop.exception.AuthException;
 import top.mapku.core.entity.User;
@@ -32,9 +33,7 @@ public class Auth {
     public static Boolean checkAuth(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         HttpSession session = request.getSession();
-        if (null == cookies || null == session) {
-            throw new AuthException();
-        }
+        verifyLoginInfo(cookies, session);
         Cookie cookie = getLoginCookie(cookies);
         if (null != session.getAttribute(Constant.COOKIE_SESSION_ID) &&
                 session.getAttribute(Constant.COOKIE_SESSION_ID).equals(cookie.getValue())) {
@@ -43,7 +42,13 @@ public class Auth {
         if (login(cookie.getValue(), session)) {
             return true;
         }
-        throw new AuthException();
+        throw new AuthException("登录认证失败");
+    }
+
+    private static void verifyLoginInfo(Cookie[] cookies, HttpSession session) {
+        if (null == cookies || null == session) {
+            throw new AuthException("无法获取登录信息");
+        }
     }
 
     private static Cookie getLoginCookie(Cookie[] cookies) {
@@ -52,7 +57,7 @@ public class Auth {
                 return cookie;
             }
         }
-        throw new AuthException();
+        throw new AuthException("还没有登录");
     }
 
     public static boolean login(String id, HttpSession session) {

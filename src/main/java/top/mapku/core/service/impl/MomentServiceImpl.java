@@ -57,7 +57,7 @@ public class MomentServiceImpl implements MomentService {
     @Override
     public void giveGood(Good good) {
         if (null != goodMapper.selectGood(good)) {
-            throw new DuplicateException();
+            throw new DuplicateException("重复点赞");
         }
         Moment moment = momentMapper.selectMomentById(good.getMomentId());
         moment.setGood(moment.getGood() + 1);
@@ -68,7 +68,7 @@ public class MomentServiceImpl implements MomentService {
     @Override
     public void deleteGood(Good good) {
         if (null == goodMapper.selectGood(good)) {
-            throw new DuplicateException();
+            throw new DuplicateException("重复取消点赞");
         }
         Moment moment = momentMapper.selectMomentById(good.getMomentId());
         moment.setGood(moment.getGood() - 1);

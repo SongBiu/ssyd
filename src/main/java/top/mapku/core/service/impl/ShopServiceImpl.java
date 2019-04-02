@@ -26,7 +26,7 @@ public class ShopServiceImpl implements ShopService {
     public boolean verify(String userId, String code) {
         boolean codeEqual = shopMapper.selectCodeByUserId(userId).equals(code);
         if (!codeEqual) {
-            throw new CodeException();
+            throw new CodeException("验证码错误");
         }
         return true;
     }
@@ -35,7 +35,7 @@ public class ShopServiceImpl implements ShopService {
     public void buyPostcard(String userId) {
         User user = userMapper.selectUserById(userId);
         if (user.getScore() < Constant.PRICE_POSTCARD) {
-            throw new LackException();
+            throw new LackException("积分不足购买明信片");
         }
         user.setPostcard(user.getPostcard() + 1);
         user.setScore(user.getScore() - Constant.PRICE_POSTCARD);
@@ -46,7 +46,7 @@ public class ShopServiceImpl implements ShopService {
     public void buyVoucher(String userId) {
         User user = userMapper.selectUserById(userId);
         if (user.getScore() < Constant.PRICE_VOUCHER) {
-            throw new LackException();
+            throw new LackException("积分不足购买代金券");
         }
         user.setPostcard(user.getPostcard() + 1);
         user.setScore(user.getScore() - Constant.PRICE_VOUCHER);
@@ -57,7 +57,7 @@ public class ShopServiceImpl implements ShopService {
     public void usePostcard(String userId) {
         User user = userMapper.selectUserById(userId);
         if (user.getPostcard() < 1) {
-            throw new LackException();
+            throw new LackException("没有明信片可以兑换");
         }
         user.setPostcard(user.getPostcard() - 1);
         shopMapper.updateShop(user);
@@ -67,7 +67,7 @@ public class ShopServiceImpl implements ShopService {
     public void useVoucher(String userId) {
         User user = userMapper.selectUserById(userId);
         if (user.getVoucher() < 1) {
-            throw new LackException();
+            throw new LackException("没有代金券可以兑换");
         }
         user.setPostcard(user.getVoucher() - 1);
         shopMapper.updateShop(user);

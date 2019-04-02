@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.mapku.core.entity.Good;
 import top.mapku.core.entity.Moment;
-import top.mapku.core.entity.Response;
 import top.mapku.core.service.MomentService;
 
 import java.util.List;

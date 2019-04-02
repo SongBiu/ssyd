@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        return true;
-//        return Auth.checkAuth(request);
+        return Auth.checkAuth(request);
     }
 }
