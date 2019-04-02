@@ -6,4 +6,7 @@ package top.mapku.core.aop.exception;
  */
 
 public class CodeException extends RuntimeException {
+    public CodeException(String message) {
+        super(message);
+    }
 }

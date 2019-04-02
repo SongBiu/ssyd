@@ -21,7 +21,11 @@ public class Response {
         this.message = message;
     }
 
-    public static Response success(Object data, String message) {
+    public static Response success(Object data) {
+        return new Response(true, data, "访问成功");
+    }
+
+    public static Response info(Object data, String message) {
         return new Response(true, data, message);
     }
 

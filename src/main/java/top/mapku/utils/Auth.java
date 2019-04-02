@@ -31,24 +31,28 @@ public class Auth {
 
     public static Boolean checkAuth(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
-        if (null == cookies) {
+        HttpSession session = request.getSession();
+        if (null == cookies || null == session) {
             throw new AuthException();
         }
-        HttpSession session = request.getSession();
-        for (Cookie cookie : cookies) {
+        Cookie cookie = getLoginCookie(cookies);
+        if (null != session.getAttribute(Constant.COOKIE_SESSION_ID) &&
+                session.getAttribute(Constant.COOKIE_SESSION_ID).equals(cookie.getValue())) {
+            return true;
+        }
+        if (login(cookie.getValue(), session)) {
+            return true;
+        }
+        throw new AuthException();
+    }
+
+    private static Cookie getLoginCookie(Cookie[] cookies) {
+        for (Cookie cookie: cookies) {
             if (Constant.COOKIE_SESSION_ID.equals(cookie.getName())) {
-                if (null != session.getAttribute(Constant.COOKIE_SESSION_ID) &&
-                        session.getAttribute(Constant.COOKIE_SESSION_ID).equals(cookie.getValue())) {
-                    return true;
-                } else {
-                    if (!login(cookie.getValue(), session)) {
-                        throw new AuthException();
-                    }
-                    return true;
-                }
+                return cookie;
             }
         }
-        return false;
+        throw new AuthException();
     }
 
     public static boolean login(String id, HttpSession session) {

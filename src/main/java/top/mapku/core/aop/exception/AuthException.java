@@ -6,4 +6,7 @@ package top.mapku.core.aop.exception;
  */
 
 public class AuthException extends RuntimeException {
+    public AuthException(String message) {
+        super(message);
+    }
 }

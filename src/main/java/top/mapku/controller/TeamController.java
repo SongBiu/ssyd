@@ -5,8 +5,6 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import top.mapku.core.aop.annotation.Auth;
-import top.mapku.core.aop.annotation.Message;
 import top.mapku.core.entity.Team;
 import top.mapku.core.service.TeamService;
 
@@ -22,8 +20,6 @@ public class TeamController {
     private TeamService teamService;
 
     @GetMapping("/")
-    @Message(fail = "获取用户社团信息失败", success = "成功获取社团信息")
-    @Auth
     public Team getTeamByUserId(@CookieValue("id") String userId) {
         return teamService.getTeamByUserId(userId);
     }
