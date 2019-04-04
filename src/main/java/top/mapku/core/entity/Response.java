@@ -1,5 +1,6 @@
 package top.mapku.core.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.stereotype.Component;
 
 /**
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
  * email: songlcis@gmail.com
  */
 @Component
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Response {
     private Boolean success;
     private Object data;

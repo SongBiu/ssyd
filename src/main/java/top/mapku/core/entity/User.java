@@ -1,6 +1,8 @@
 package top.mapku.core.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.sql.Date;
 
 /**
@@ -8,6 +10,7 @@ import java.sql.Date;
  * email: songlcis@gmail.com
  */
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User {
     private String userId;
     private String userName;
@@ -19,6 +22,7 @@ public class User {
     private Integer voucher;
     private String avatarUrl;
     private Boolean pku;
+    private String teamName;
 
     public User(String userId, String userName, String avatarUrl) {
         this.userId = userId;
@@ -26,7 +30,7 @@ public class User {
         this.avatarUrl = avatarUrl;
     }
 
-    public User(String userId, String userName, Integer teamId, Date registrationDate, Integer score, Integer bag, Integer postcard, Integer voucher, String avatarUrl, Boolean pku) {
+    public User(String userId, String userName, Integer teamId, Date registrationDate, Integer score, Integer bag, Integer postcard, Integer voucher, String avatarUrl, Boolean pku, String teamName) {
         this.userId = userId;
         this.userName = userName;
         this.teamId = teamId;
@@ -37,6 +41,7 @@ public class User {
         this.voucher = voucher;
         this.avatarUrl = avatarUrl;
         this.pku = pku;
+        this.teamName = teamName;
     }
 
     public String getUserId() {
@@ -117,5 +122,13 @@ public class User {
 
     public void setPku(Boolean pku) {
         this.pku = pku;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
     }
 }

@@ -14,7 +14,18 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper {
-    @Select("SELECT * FROM user WHERE userId = #{id}")
+    @Select("SELECT userId, " +
+            "userName, " +
+            "user.teamId, " +
+            "registrationDate, " +
+            "score, " +
+            "bag, " +
+            "postcard, " +
+            "voucher, " +
+            "avatarUrl, " +
+            "pku, " +
+            "team.teamName " +
+            "FROM user LEFT JOIN team ON user.teamId = team.teamId WHERE userId = #{id}")
     User selectUserById(String id);
 
     @Select("SELECT * FROM user WHERE teamId = #{teamId}")

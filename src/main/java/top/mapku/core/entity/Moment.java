@@ -1,15 +1,18 @@
 package top.mapku.core.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.beans.factory.annotation.Value;
 
-import java.sql.Date;
+import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * create by lisong
  * email: songlcis@gmail.com
  */
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Moment {
 
     @Value("${ssyd.domain}")
@@ -24,6 +27,22 @@ public class Moment {
     private String position;
     private Boolean ssyd;
     private Integer good;
+    private String userName;
+    private String avatarUrl;
+
+    public Moment(Integer momentId, Timestamp momentDate, String userId, Integer bag, String content, String imageUrl, String position, Boolean ssyd, Integer good, String userName, String avatarUrl) {
+        this.momentId = momentId;
+        this.momentDate = new Date(momentDate.getTime());
+        this.userId = userId;
+        this.bag = bag;
+        this.content = content;
+        this.imageUrl = imageUrl;
+        this.position = position;
+        this.ssyd = ssyd;
+        this.good = good;
+        this.userName = userName;
+        this.avatarUrl = avatarUrl;
+    }
 
     public Moment(String userId, Integer bag, String content, String imageUrl, String position, Boolean ssyd) {
         this.userId = userId;
@@ -47,14 +66,6 @@ public class Moment {
 
     static Moment xqjlMoment(String userId, String content, String position) {
         return new Moment(userId, content, position, false);
-    }
-
-    public String getDomain() {
-        return domain;
-    }
-
-    public void setDomain(String domain) {
-        this.domain = domain;
     }
 
     public Integer getMomentId() {
@@ -127,5 +138,21 @@ public class Moment {
 
     public void setGood(Integer good) {
         this.good = good;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

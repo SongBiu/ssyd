@@ -11,10 +11,10 @@ import java.util.List;
  */
 @Mapper
 public interface MomentMapper {
-    @Select("SELECT * FROM moment")
+    @Select("SELECT momentId, momentDate, user.userId, moment.bag, content, imageUrl, position, ssyd, good, userName, avatarUrl FROM moment JOIN user")
     List<Moment> selectAllMoments();
 
-    @Select("SELECT * FROM moment WHERE momentId = #{momentId}")
+    @Select("SELECT momentId, momentDate, user.userId, moment.bag, content, imageUrl, position, ssyd, good, userName, avatarUrl FROM moment JOIN user WHERE momentId = #{momentId}")
     Moment selectMomentById(Integer momentId);
 
     @Select("SELECT * FROM moment WHERE userId = #{userId}")
