@@ -25,3 +25,5 @@ src/main/resources/application.properties
 /dist/
 /nbdist/
 /.nb-gradle/
+
+.DS_Store
